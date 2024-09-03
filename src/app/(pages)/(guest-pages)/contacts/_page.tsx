@@ -90,6 +90,8 @@ export default function Contacts() {
                     </Link>
                     <Link
                       href="https://maps.app.goo.gl/1xVD7oNyroXAmddT7"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center"
                     >
                       <svg

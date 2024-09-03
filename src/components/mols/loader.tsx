@@ -11,18 +11,20 @@ export default function LoaderHourglass({
 }) {
   const nodeRef = useRef(null);
   return (
-    <CSSTransition
-      nodeRef={nodeRef}
-      in={isLoading}
-      timeout={1000}
-      classNames="fade"
-      appear={true}
-      unmountOnExit
-      onExited={onExited}
-    >
-      <div className={styles.loader + " opacity-0"} ref={nodeRef}>
-        <div className={styles.hourglass}></div>
-      </div>
-    </CSSTransition>
+    <div className="m-auto">
+      <CSSTransition
+        nodeRef={nodeRef}
+        in={isLoading}
+        timeout={1000}
+        classNames="fade"
+        appear={true}
+        unmountOnExit
+        onExited={onExited}
+      >
+        <div className={styles.loader + " opacity-0"} ref={nodeRef}>
+          <div className={styles.hourglass}></div>
+        </div>
+      </CSSTransition>
+    </div>
   );
 }

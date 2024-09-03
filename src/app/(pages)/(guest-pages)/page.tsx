@@ -11,13 +11,13 @@ export default function LandingPage() {
     <main className="flex flex-col items-center justify-between p-8 lg:p-16 max-h-[800px] w-full">
       <header className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex md:flex-row flex-col">
         <p className="fixed left-0 top-0 w-full text-center border-b pb-6 pt-8 px-4 backdrop-blur-lg border-border bg-primary/10 lg:static lg:w-auto  lg:rounded-xl lg:border lg:p-4">
-          A prosecution of article 35 of the&nbsp;
-          <code className="font-mono font-bold">Kenyan constitution</code>
+          The contact manager that loves&nbsp;
+          <code className="font-mono font-bold">communication</code>
         </p>
         <div className="fixed bottom-0 left-0 hidden lg:flex h-48 w-full items-end justify-center lg:static lg:size-auto lg:bg-none">
           <Link
             className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-            href="/sign-in"
+            href={userSession?.user ? "/user" : "/sign-in"}
             // target="_blank"
             // rel="noopener noreferrer"
           >

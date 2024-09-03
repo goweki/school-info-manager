@@ -6,8 +6,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "next-starter",
-  description: "A Next.js starter app",
+  title: "contacts-manager",
+  description: "Contacts manager and omni-channel communications app",
 };
 
 export default function RootLayout({

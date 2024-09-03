@@ -57,11 +57,17 @@ const routes = {
     { label: "blog", link: "/blog", icon: LibraryBig },
     { label: "contacts", link: "/contacts", icon: Contact },
   ],
-  auth: [{ label: "home", link: "/user", icon: Home }],
+  auth: [
+    { label: "home", link: "/", icon: Home },
+    { label: "dashboard", link: "/user", icon: Home },
+    { label: "services", link: "/services", icon: Users },
+    { label: "blog", link: "/blog", icon: LibraryBig },
+    { label: "contacts", link: "/contacts", icon: Contact },
+  ],
 };
 
 const Navbar = () => {
-  const pathname = usePathname();
+  //
   return (
     <header
       id="navbar"
@@ -86,51 +92,14 @@ const Navbar = () => {
   );
 };
 
-const components: { title: string; href: string; description: string }[] = [
-  {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
-  },
-  {
-    title: "Progress",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
-  {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  },
-];
-
 const NavigationMenuComponent = () => {
   const pathname = usePathname();
+  const { data: userSession, status: authStatus } = useSession();
   // console.log("pathname: ", pathname);
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        {(pathname.includes("/user") ? routes.auth : routes.unauth).map(
+        {(authStatus === "authenticated" ? routes.auth : routes.unauth).map(
           ({ label, link }) => (
             <NavigationMenuItem key={label}>
               <Link href={link} legacyBehavior passHref>
@@ -179,7 +148,9 @@ const ListItem = React.forwardRef<
 ListItem.displayName = "ListItem";
 
 const HamburgerMenu = () => {
+  const { data: userSession, status: authStatus } = useSession();
   const pathname = usePathname();
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -194,7 +165,7 @@ const HamburgerMenu = () => {
           <SheetDescription className="sr-only">Main Menu</SheetDescription>
         </SheetHeader>
         <nav className="grid gap-2 mt-4 text-lg font-medium">
-          {(pathname.includes("/user") ? routes.auth : routes.unauth).map(
+          {(userSession?.user ? routes.auth : routes.unauth).map(
             ({ label, link, icon: Icon }) => (
               <Link
                 key={label}

@@ -81,12 +81,14 @@ export function RootProviders({
         <SessionProvider>
           <TooltipProvider>
             {UIstate.splashLag ? (
-              <LoaderHourglass
-                isLoading={UIstate.splash || UIstate.loadingData}
-                onExited={() =>
-                  setUIstate((prev) => ({ ...prev, splashLag: false }))
-                }
-              />
+              <div className="flex h-full">
+                <LoaderHourglass
+                  isLoading={UIstate.splash || UIstate.loadingData}
+                  onExited={() =>
+                    setUIstate((prev) => ({ ...prev, splashLag: false }))
+                  }
+                />
+              </div>
             ) : UIstate.error ? (
               <div className="text-center p-4 m-auto">
                 ERROR encountered.{" "}

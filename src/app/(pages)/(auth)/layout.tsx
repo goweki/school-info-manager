@@ -23,8 +23,10 @@ export default function AuthLayout({
 
   // render
   return (
-    <main className="flex flex-col flex-grow items-center justify-between">
-      {children}
+    <main className="flex w-full h-full">
+      <div className="flex flex-col flex-grow items-center justify-between">
+        {children}
+      </div>
     </main>
   );
 }
