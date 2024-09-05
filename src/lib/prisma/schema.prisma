@@ -44,26 +44,28 @@ model Media {
     @@map("media")
 }
 
-// model Student {
-//     id     String @id @default(auto()) @map("_id") @db.ObjectId
-//     avatar String
-//     name   String
-//     admNo  String
+model Student {
+    id     String @id @default(auto()) @map("_id") @db.ObjectId
+    avatar String
+    name   String
+    admNo  String
 
-//     guardianIDs String[]   @db.ObjectId
-//     guardians   Guardian[] @relation(fields: [guardianIDs], references: [id])
+    guardianIDs String[]   @db.ObjectId
+    guardians   Guardian[] @relation(fields: [guardianIDs], references: [id])
 
-//     @@map("students")
-// }
+    @@map("students")
+}
 
-// model Guardian {
-//     id     String @id @default(auto()) @map("_id") @db.ObjectId
-//     name   String
-//     avatar String
-//     title  String
+model Guardian {
+    id       String @id @default(auto()) @map("_id") @db.ObjectId
+    name     String
+    avatar   String
+    email    String
+    tel      String
+    whatsapp String
 
-//     studentIDs String[]  @db.ObjectId
-//     students   Student[] @relation(fields: [studentIDs], references: [id])
+    studentIDs String[]  @db.ObjectId
+    students   Student[] @relation(fields: [studentIDs], references: [id])
 
-//     @@map("guardians")
-// }
+    @@map("guardians")
+}

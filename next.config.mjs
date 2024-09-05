@@ -3,8 +3,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "www.parliament.go.ke",
+        protocol: "https",
+        hostname: "avatar.iran.liara.run",
         // port: '',
         // pathname: '/account123/**',
       },

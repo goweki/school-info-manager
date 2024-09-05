@@ -7,17 +7,30 @@ import { SessionProvider } from "next-auth/react";
 import LoaderHourglass from "./loader";
 import { TooltipProvider } from "../ui/tooltip";
 import { httpCodes } from "@/lib/refDictionary";
+import { Media, Student, Guardian } from "@prisma/client";
 
 import Link from "next/link";
 
-export const DataContext = createContext<{}>({});
+export const DataContext = createContext<{
+  media: Media[];
+}>({ media: [] });
+
+export const AuthContext = createContext<{
+  students: Student[];
+  guardians: Guardian[];
+}>({ students: [], guardians: [] });
 
 export function RootProviders({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [data, setData] = useState<{}>({});
+  const [data, setData] = useState<{
+    media: Media[];
+  }>({
+    media: [],
+  });
+
   const [UIstate, setUIstate] = useState<{
     splash: boolean;
     splashLag: boolean;
