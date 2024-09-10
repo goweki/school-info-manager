@@ -7,24 +7,34 @@ datasource db {
     url      = env("DB_URL")
 }
 
-//  Users for AUTH
 enum userRole {
     SUPER_ADMIN
     ADMIN
-    SUPERVISOR
-    USER
+    TEACHER
+    GUARDIAN
+    STUDENT
+}
+
+enum userStatus {
+    ACTIVE
+    DOMANT
+    CLOSED
 }
 
 model User {
-    id               String    @id @default(auto()) @map("_id") @db.ObjectId
-    email            String    @unique
-    name             String?
-    tel              String?   @unique
+    id               String     @id @default(auto()) @map("_id") @db.ObjectId
+    email            String?    @unique
+    name             String
+    tel              String?    @unique
     password         String?
-    role             userRole  @default(USER)
+    role             userRole   @default(STUDENT)
+    status           userStatus @default(DOMANT)
     avatar           String?
     resetToken       String?
     resetTokenExpiry DateTime?
+
+    studentProfile  Student?
+    guardianProfile Guardian?
 
     @@map("users")
 }
@@ -44,28 +54,89 @@ model Media {
     @@map("media")
 }
 
+model Grade {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+
+    courseID String @db.ObjectId
+    course   Course @relation(fields: [courseID], references: [id])
+
+    rank String
+
+    studentIDs String[]  @db.ObjectId
+    students   Student[] @relation(fields: [studentIDs], references: [id])
+
+    @@map("grades")
+}
+
 model Student {
-    id     String @id @default(auto()) @map("_id") @db.ObjectId
-    avatar String
-    name   String
-    admNo  String
+    id    String @id @default(auto()) @map("_id") @db.ObjectId
+    admNo String
+
+    userID String? @unique @db.ObjectId
+    user   User?   @relation(fields: [userID], references: [id])
+
+    gradeIDs String[] @db.ObjectId
+    grades   Grade[]  @relation(fields: [gradeIDs], references: [id])
 
     guardianIDs String[]   @db.ObjectId
     guardians   Guardian[] @relation(fields: [guardianIDs], references: [id])
+
+    Marks UnitScore[]
 
     @@map("students")
 }
 
 model Guardian {
-    id       String @id @default(auto()) @map("_id") @db.ObjectId
+    id       String  @id @default(auto()) @map("_id") @db.ObjectId
     name     String
-    avatar   String
-    email    String
-    tel      String
-    whatsapp String
+    avatar   String?
+    email    String? @unique
+    tel      String? @unique
+    whatsapp String? @unique
 
-    studentIDs String[]  @db.ObjectId
-    students   Student[] @relation(fields: [studentIDs], references: [id])
+    userID String? @unique @db.ObjectId
+    user   User?   @relation(fields: [userID], references: [id])
+
+    childrenIDs String[]  @db.ObjectId
+    children    Student[] @relation(fields: [childrenIDs], references: [id])
 
     @@map("guardians")
+}
+
+model Course {
+    id          String @id @default(auto()) @map("_id") @db.ObjectId
+    name        String
+    description String
+
+    units  Unit[]
+    grades Grade[]
+
+    @@map("courses")
+}
+
+model Unit {
+    id          String @id @default(auto()) @map("_id") @db.ObjectId
+    name        String
+    description String
+
+    courseID String @db.ObjectId
+    course   Course @relation(fields: [courseID], references: [id])
+
+    scores UnitScore[]
+
+    @@map("units")
+}
+
+model UnitScore {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+
+    studentID String  @db.ObjectId
+    student   Student @relation(fields: [studentID], references: [id])
+
+    unitID String @db.ObjectId
+    unit   Unit   @relation(fields: [unitID], references: [id])
+
+    score Int
+
+    @@map("scores")
 }

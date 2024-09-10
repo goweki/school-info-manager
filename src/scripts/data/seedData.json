@@ -1,0 +1,186 @@
+{
+  "users": [
+    {
+      "name": "Antonio G.",
+      "email": "antonio@goweki.com",
+      "role": "SUPER_ADMIN",
+      "avatar": "https://example.com/avatars/johndoe.png"
+    }
+  ],
+  "media": [
+    {
+      "type": "BLOGPOST",
+      "title": "Hello World: The First Step in Every Programmer's Journey",
+      "content": "# Hello World: The First Step in Every Programmer's Journey\n\nIn the world of programming, there’s a phrase that resonates universally across all languages and platforms: **\"Hello, World!\"** This simple statement is often the first output any aspiring developer sees when they begin their coding journey. But beyond the text, \"Hello, World!\" symbolizes the gateway to a vast, complex, and exciting world of technology.\n\n## The Origin of \"Hello, World!\"\n\nThe tradition of using \"Hello, World!\" as the first program stems from the book *The C Programming Language* by **Brian Kernighan** and **Dennis Ritchie**, published in 1978. The book used this simple program to introduce the syntax and structure of the C programming language. Since then, \"Hello, World!\" has become a rite of passage for programmers across the globe.\n\n## The Simplicity and Significance\n\nAt first glance, \"Hello, World!\" may seem trivial, but its significance lies in its simplicity. This basic program allows beginners to:\n\n1. **Understand the Basics**: It provides a clear and straightforward way to understand the fundamental concepts of a programming language, such as syntax, output functions, and program structure.\n\n2. **Gain Confidence**: Seeing something as simple as \"Hello, World!\" displayed on the screen is a confidence booster. It marks the first step in a long journey of learning and exploration.\n\n3. **Test the Environment**: It helps in testing the development environment to ensure that everything is set up correctly. If \"Hello, World!\" works, the programmer knows they’re ready to move on to more complex tasks.",
+      "image": "https://placehold.co/600x400"
+    },
+    {
+      "type": "BLOGPOST",
+      "title": "The Evolution of JavaScript: From ES6 to Modern Day",
+      "content": "# The Evolution of JavaScript: From ES6 to Modern Day\n\nJavaScript has come a long way since its inception in 1995. With the introduction of ECMAScript 6 (ES6) in 2015, the language underwent a significant transformation that brought about many of the features developers now rely on daily.\n\n## Key Features of ES6\n\nES6 introduced several key features that modernized JavaScript:\n\n1. **Arrow Functions**: Simplified function syntax that improves readability.\n2. **Classes**: A syntactical sugar over JavaScript’s existing prototype-based inheritance.\n3. **Template Literals**: Enhanced string interpolation with embedded expressions.\n4. **Promises**: A way to handle asynchronous operations more effectively.\n\n## The Impact on Development\n\nThe features introduced in ES6 and subsequent versions have significantly impacted JavaScript development, making the language more powerful, efficient, and easier to work with.\n\n## What's Next?\n\nWith new updates being proposed and added to ECMAScript every year, JavaScript continues to evolve, ensuring it remains at the forefront of web development.\n",
+      "image": "https://placehold.co/600x400"
+    },
+    {
+      "type": "BLOGPOST",
+      "title": "Understanding React Hooks: A New Era of State Management",
+      "content": "# Understanding React Hooks: A New Era of State Management\n\nWhen React Hooks were introduced in React 16.8, they revolutionized how developers manage state and side effects in functional components. Before Hooks, managing state required class components, which often led to more complex and harder-to-maintain code.\n\n## The Power of Hooks\n\nReact Hooks provide a way to manage state and other React features in functional components:\n\n1. **useState**: Allows you to add state to functional components.\n2. **useEffect**: Handles side effects like data fetching and subscriptions.\n3. **useContext**: Enables easy state management across components using React Context.\n\n## Why Hooks Matter\n\nHooks have made it possible to write cleaner, more modular, and reusable code. They have also reduced the need for higher-order components and render props, simplifying the React development process.\n\n## The Future with Hooks\n\nReact Hooks have become a cornerstone of modern React development, and their usage continues to grow as developers embrace functional programming principles.\n",
+      "image": "https://placehold.co/600x400"
+    },
+    {
+      "type": "BLOGPOST",
+      "title": "Why TypeScript is the Future of JavaScript Development",
+      "content": "# Why TypeScript is the Future of JavaScript Development\n\nTypeScript has quickly become one of the most popular tools for JavaScript developers. As a superset of JavaScript, TypeScript introduces static typing, which helps developers catch errors early and write more maintainable code.\n\n## The Benefits of TypeScript\n\nTypeScript offers several advantages over plain JavaScript:\n\n1. **Static Typing**: Helps prevent runtime errors by catching type-related issues at compile time.\n2. **Enhanced IDE Support**: Provides better autocompletion, refactoring, and navigation in editors like VSCode.\n3. **Improved Code Quality**: Encourages developers to write cleaner, more robust code with clear interfaces and types.\n\n## Adoption in the Industry\n\nMany large-scale projects and companies have adopted TypeScript, including Microsoft, Google, and Airbnb. Its popularity continues to rise as developers recognize the benefits it brings to JavaScript development.\n\n## Conclusion\n\nAs JavaScript applications become more complex, TypeScript is increasingly viewed as the future of JavaScript development. It offers the best of both worlds: the flexibility of JavaScript with the reliability of static typing.\n",
+      "image": "https://placehold.co/600x400"
+    }
+  ],
+  "courses": [
+    {
+      "name": "Hello Dev",
+      "description": "Introduction to Software Development"
+    },
+    {
+      "name": "Kenyan CBC - Primary",
+      "description": "Elementary Education"
+    }
+  ],
+  "guardians": [
+    {
+      "name": "Michael Doe",
+      "avatar": "https://avatar.iran.liara.run/public/1.png",
+      "email": "michael.doe@example.com",
+      "tel": "+254700111111",
+      "whatsapp": "+254700111111"
+    },
+    {
+      "name": "Jane Doe",
+      "avatar": "https://avatar.iran.liara.run/public/2.png",
+      "email": "jane.doe@example.com",
+      "tel": "+254700222222",
+      "whatsapp": "+254700222222"
+    },
+    {
+      "name": "William Smith",
+      "avatar": "https://avatar.iran.liara.run/public/3.png",
+      "email": "william.smith@example.com",
+      "tel": "+254700333333",
+      "whatsapp": "+254700333333"
+    },
+    {
+      "name": "Emily Johnson",
+      "avatar": "https://avatar.iran.liara.run/public/4.png",
+      "email": "emily.johnson@example.com",
+      "tel": "+254700444444",
+      "whatsapp": "+254700444444"
+    },
+    {
+      "name": "Christopher Brown",
+      "avatar": "https://avatar.iran.liara.run/public/5.png",
+      "email": "christopher.brown@example.com",
+      "tel": "+254700555555",
+      "whatsapp": "+254700555555"
+    },
+    {
+      "name": "Patricia Davis",
+      "avatar": "https://avatar.iran.liara.run/public/6.png",
+      "whatsapp": "+254700666666"
+    },
+    {
+      "name": "Thomas Wilson",
+      "avatar": "https://avatar.iran.liara.run/public/7.png",
+      "email": "thomas.wilson@example.com",
+      "tel": "+254700777777",
+      "whatsapp": "+254700777777"
+    },
+    {
+      "name": "Sarah Moore",
+      "avatar": "https://avatar.iran.liara.run/public/8.png",
+      "email": "sarah.moore@example.com"
+    },
+    {
+      "name": "Robert Taylor",
+      "email": "robert.taylor@example.com",
+      "tel": "+254700999999",
+      "whatsapp": "+254700999999"
+    },
+    {
+      "name": "Linda Anderson",
+      "email": "linda.anderson@example.com",
+      "tel": "+254701000000",
+      "whatsapp": "+254701000000"
+    },
+    {
+      "name": "John Thomas",
+      "avatar": "https://avatar.iran.liara.run/public/11.png",
+      "email": "john.thomas@example.com",
+      "tel": "+254701111111",
+      "whatsapp": "+254701111111"
+    },
+    {
+      "name": "Barbara Jackson",
+      "avatar": "https://avatar.iran.liara.run/public/12.png",
+      "tel": "+254701222222"
+    },
+    {
+      "name": "Mark Harris",
+      "avatar": "https://avatar.iran.liara.run/public/13.png",
+      "email": "mark.harris@example.com",
+      "whatsapp": "+254701333333"
+    },
+    {
+      "name": "Nancy Clark",
+      "avatar": "https://avatar.iran.liara.run/public/14.png",
+      "email": "nancy.clark@example.com",
+      "tel": "+254701444444",
+      "whatsapp": "+254701444444"
+    },
+    {
+      "name": "Steven Lewis",
+      "avatar": "https://avatar.iran.liara.run/public/15.png",
+      "email": "steven.lewis@example.com",
+      "tel": "+254701555555"
+    },
+    {
+      "name": "Sandra Martinez",
+      "avatar": "https://avatar.iran.liara.run/public/16.png",
+      "email": "sandra.martinez@example.com",
+      "tel": "+254701666666"
+    },
+    {
+      "name": "Joseph Walker",
+      "avatar": "https://avatar.iran.liara.run/public/17.png",
+      "email": "joseph.walker@example.com",
+      "tel": "+254701777777"
+    },
+    {
+      "name": "Dorothy Hill",
+      "avatar": "https://avatar.iran.liara.run/public/18.png",
+      "email": "dorothy.hill@example.com",
+      "tel": "+254701888888"
+    },
+    {
+      "name": "Charles Scott",
+      "avatar": "https://avatar.iran.liara.run/public/19.png",
+      "email": "charles.scott@example.com",
+      "whatsapp": "+254701999999"
+    },
+    {
+      "name": "Karen Wright",
+      "avatar": "https://avatar.iran.liara.run/public/20.png",
+      "email": "karen.wright@example.com",
+      "tel": "+254702000000",
+      "whatsapp": "+254702000000"
+    },
+    {
+      "name": "Daniel King",
+      "avatar": "https://avatar.iran.liara.run/public/21.png",
+      "email": "daniel.king@example.com",
+      "whatsapp": "+254702111111"
+    },
+    {
+      "name": "Lisa Allen",
+      "avatar": "https://avatar.iran.liara.run/public/22.png",
+      "email": "lisa.allen@example.com",
+      "whatsapp": "+254702222222"
+    }
+  ]
+}
