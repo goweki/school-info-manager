@@ -7,25 +7,34 @@ datasource db {
     url      = env("DB_URL")
 }
 
-//  Users for AUTH
 enum userRole {
     SUPER_ADMIN
     ADMIN
     TEACHER
-    PARENT
+    GUARDIAN
     STUDENT
 }
 
+enum userStatus {
+    ACTIVE
+    DOMANT
+    CLOSED
+}
+
 model User {
-    id               String    @id @default(auto()) @map("_id") @db.ObjectId
-    email            String    @unique
-    name             String?
-    tel              String?   @unique
+    id               String     @id @default(auto()) @map("_id") @db.ObjectId
+    email            String?    @unique
+    name             String
+    tel              String?    @unique
     password         String?
-    role             userRole  @default(STUDENT)
+    role             userRole   @default(STUDENT)
+    status           userStatus @default(DOMANT)
     avatar           String?
     resetToken       String?
     resetTokenExpiry DateTime?
+
+    studentProfile  Student?
+    guardianProfile Guardian?
 
     @@map("users")
 }
@@ -60,10 +69,11 @@ model Grade {
 }
 
 model Student {
-    id     String @id @default(auto()) @map("_id") @db.ObjectId
-    avatar String
-    name   String
-    admNo  String
+    id    String @id @default(auto()) @map("_id") @db.ObjectId
+    admNo String
+
+    userID String? @unique @db.ObjectId
+    user   User?   @relation(fields: [userID], references: [id])
 
     gradeIDs String[] @db.ObjectId
     grades   Grade[]  @relation(fields: [gradeIDs], references: [id])
@@ -79,13 +89,16 @@ model Student {
 model Guardian {
     id       String  @id @default(auto()) @map("_id") @db.ObjectId
     name     String
-    avatar   String
+    avatar   String?
     email    String? @unique
     tel      String? @unique
     whatsapp String? @unique
 
-    studentIDs String[]  @db.ObjectId
-    students   Student[] @relation(fields: [studentIDs], references: [id])
+    userID String? @unique @db.ObjectId
+    user   User?   @relation(fields: [userID], references: [id])
+
+    childrenIDs String[]  @db.ObjectId
+    children    Student[] @relation(fields: [childrenIDs], references: [id])
 
     @@map("guardians")
 }

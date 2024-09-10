@@ -82,8 +82,6 @@
     {
       "name": "Patricia Davis",
       "avatar": "https://avatar.iran.liara.run/public/6.png",
-      "email": "patricia.davis@example.com",
-      "tel": "+254700666666",
       "whatsapp": "+254700666666"
     },
     {
@@ -96,20 +94,16 @@
     {
       "name": "Sarah Moore",
       "avatar": "https://avatar.iran.liara.run/public/8.png",
-      "email": "sarah.moore@example.com",
-      "tel": "+254700888888",
-      "whatsapp": "+254700888888"
+      "email": "sarah.moore@example.com"
     },
     {
       "name": "Robert Taylor",
-      "avatar": "https://avatar.iran.liara.run/public/9.png",
       "email": "robert.taylor@example.com",
       "tel": "+254700999999",
       "whatsapp": "+254700999999"
     },
     {
       "name": "Linda Anderson",
-      "avatar": "https://avatar.iran.liara.run/public/10.png",
       "email": "linda.anderson@example.com",
       "tel": "+254701000000",
       "whatsapp": "+254701000000"
@@ -124,15 +118,12 @@
     {
       "name": "Barbara Jackson",
       "avatar": "https://avatar.iran.liara.run/public/12.png",
-      "email": "barbara.jackson@example.com",
-      "tel": "+254701222222",
-      "whatsapp": "+254701222222"
+      "tel": "+254701222222"
     },
     {
       "name": "Mark Harris",
       "avatar": "https://avatar.iran.liara.run/public/13.png",
       "email": "mark.harris@example.com",
-      "tel": "+254701333333",
       "whatsapp": "+254701333333"
     },
     {
@@ -146,35 +137,30 @@
       "name": "Steven Lewis",
       "avatar": "https://avatar.iran.liara.run/public/15.png",
       "email": "steven.lewis@example.com",
-      "tel": "+254701555555",
-      "whatsapp": "+254701555555"
+      "tel": "+254701555555"
     },
     {
       "name": "Sandra Martinez",
       "avatar": "https://avatar.iran.liara.run/public/16.png",
       "email": "sandra.martinez@example.com",
-      "tel": "+254701666666",
-      "whatsapp": "+254701666666"
+      "tel": "+254701666666"
     },
     {
       "name": "Joseph Walker",
       "avatar": "https://avatar.iran.liara.run/public/17.png",
       "email": "joseph.walker@example.com",
-      "tel": "+254701777777",
-      "whatsapp": "+254701777777"
+      "tel": "+254701777777"
     },
     {
       "name": "Dorothy Hill",
       "avatar": "https://avatar.iran.liara.run/public/18.png",
       "email": "dorothy.hill@example.com",
-      "tel": "+254701888888",
-      "whatsapp": "+254701888888"
+      "tel": "+254701888888"
     },
     {
       "name": "Charles Scott",
       "avatar": "https://avatar.iran.liara.run/public/19.png",
       "email": "charles.scott@example.com",
-      "tel": "+254701999999",
       "whatsapp": "+254701999999"
     },
     {
@@ -188,14 +174,12 @@
       "name": "Daniel King",
       "avatar": "https://avatar.iran.liara.run/public/21.png",
       "email": "daniel.king@example.com",
-      "tel": "+254702111111",
       "whatsapp": "+254702111111"
     },
     {
       "name": "Lisa Allen",
       "avatar": "https://avatar.iran.liara.run/public/22.png",
       "email": "lisa.allen@example.com",
-      "tel": "+254702222222",
       "whatsapp": "+254702222222"
     }
   ]

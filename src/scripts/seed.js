@@ -16,34 +16,38 @@ async function seed() {
   }
 
   console.log("Seeding media...");
+  const _mediaNames = (await prisma.media.findMany()).map(({ title }) => title);
   for (const mediaDoc of media) {
-    await prisma.media.upsert({
-      where: { title: mediaDoc.title }, // Ensure `title` is unique in your schema
-      update: {}, // No updates if the record exists
-      create: mediaDoc, // Create new record if it does not exist
-    });
+    // Create new record if it does not exist
+    if (!_mediaNames.includes(mediaDoc.name)) {
+      await prisma.media.create({
+        data: mediaDoc,
+      });
+    }
   }
 
   console.log("Seeding courses...");
-  for (const course_ of courses) {
-    await prisma.course.upsert({
-      where: { name: course_.name }, // Ensure `name` is unique in your schema
-      update: {}, // No updates if the record exists
-      create: course_, // Create new record if it does not exist
-    });
+  const _courseNames = (await prisma.course.findMany()).map(({ name }) => name);
+  for (const courseDoc of courses) {
+    // Create new record if it does not exist
+    if (!_courseNames.includes(courseDoc.name)) {
+      await prisma.course.create({
+        data: courseDoc,
+      });
+    }
   }
 
   console.log("Seeding guardians...");
-  // await prisma.guardian.createMany({
-  //   data: guardians,
-  //   skipDuplicates: true, // Skip if a guardian with the same unique field already exists
-  // });
-  for (const guardian of guardians) {
-    await prisma.guardian.upsert({
-      where: { name: guardian.name }, // Ensure `name` is unique in your schema
-      update: guardian, // No updates if the record exists
-      create: guardian, // Create new record if it does not exist
-    });
+  const _guardianNames = (await prisma.guardian.findMany()).map(
+    ({ name }) => name
+  );
+  for (const guadianDoc of guardians) {
+    // Create new record if it does not exist
+    if (!_guardianNames.includes(guadianDoc.name)) {
+      await prisma.guardian.create({
+        data: guadianDoc,
+      });
+    }
   }
 }
 
