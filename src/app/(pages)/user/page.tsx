@@ -50,15 +50,21 @@ import {
 import WithTitleLayout from "@/components/layouts/withTitle";
 import { UserContext } from "@/components/mols/userProviders";
 import { Guardian, Student } from "@prisma/client";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 
 type ContactType = Guardian & { students?: Student[] };
 
 export default function Dashboard() {
-  const { guardians } = useContext<{
-    guardians: any[];
-    students: any[];
-  }>(UserContext);
+  const users = useContext(UserContext);
+
+  // Use useMemo to memoize the values
+  const { guardians, students } = useMemo(() => {
+    return {
+      // Handle the case where context might be null
+      guardians: users?.guardians ?? [],
+      students: users?.students ?? [],
+    };
+  }, [users]);
 
   const [pagination, setPagination] = useState<{
     perPage: number;

@@ -1,37 +1,53 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-const super_admin = require("../scripts/data/super_admin.json");
-const media = require("../scripts/data/media.json");
-const students = require("../scripts/data/students.json");
-const guardians = require("../scripts/data/guardians.json");
+const seedData = require("../scripts/data/seedData.json");
+const { users, media, courses, guardians } = seedData;
 
-// funtion definition
+// Function definition
 async function seed() {
-  console.log("Seeding super_admin...");
-  await prisma.user.upsert({
-    where: { email: super_admin.email },
-    update: { ...super_admin },
-    create: { ...super_admin },
-  });
+  console.log("Seeding users...");
+  for (const user of users) {
+    await prisma.user.upsert({
+      where: { email: user.email }, // Unique constraint for email
+      update: {}, // No updates if the record exists
+      create: user, // Create new record if it does not exist
+    });
+  }
 
   console.log("Seeding media...");
-  await prisma.media.createMany({
-    data: media,
-  });
+  for (const mediaDoc of media) {
+    await prisma.media.upsert({
+      where: { title: mediaDoc.title }, // Ensure `title` is unique in your schema
+      update: {}, // No updates if the record exists
+      create: mediaDoc, // Create new record if it does not exist
+    });
+  }
 
-  console.log("Seeding students...");
-  await prisma.student.createMany({
-    data: students,
-  });
+  console.log("Seeding courses...");
+  for (const course_ of courses) {
+    await prisma.course.upsert({
+      where: { name: course_.name }, // Ensure `name` is unique in your schema
+      update: {}, // No updates if the record exists
+      create: course_, // Create new record if it does not exist
+    });
+  }
 
   console.log("Seeding guardians...");
-  await prisma.guardian.createMany({
-    data: guardians,
-  });
+  // await prisma.guardian.createMany({
+  //   data: guardians,
+  //   skipDuplicates: true, // Skip if a guardian with the same unique field already exists
+  // });
+  for (const guardian of guardians) {
+    await prisma.guardian.upsert({
+      where: { name: guardian.name }, // Ensure `name` is unique in your schema
+      update: guardian, // No updates if the record exists
+      create: guardian, // Create new record if it does not exist
+    });
+  }
 }
 
-//function call
+// Function call
 seed()
   .then(async () => {
     console.log("SEEDING COMPLETE\n");

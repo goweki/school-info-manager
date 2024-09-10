@@ -7,39 +7,22 @@ import { Student, Guardian } from "@prisma/client";
 
 import Link from "next/link";
 
-export const UserContext = createContext<{
-  students: Student[];
-  guardians: Guardian[];
-}>({ students: [], guardians: [] });
+export const UserContext = createContext<{ [key: string]: any[] } | null>(null);
 
 export function UserProviders({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [data, setData] = useState<{
-    students: Student[];
-    guardians: Guardian[];
-  }>({
-    students: [],
-    guardians: [],
-  });
+  const [data, setData] = useState<{ [key: string]: any[] } | null>(null);
 
   const [UIstate, setUIstate] = useState<{
-    splash: boolean;
     splashLag: boolean;
     loadingData: boolean;
     error: string;
-  }>({ splash: true, splashLag: true, loadingData: true, error: "" });
+  }>({ splashLag: true, loadingData: true, error: "" });
 
-  // onMount
-  useEffect(() => {
-    setTimeout(() => {
-      setUIstate((prev) => ({ ...prev, splash: false }));
-    }, 4000);
-  }, []);
-
-  // fetch data
+  // fetch data onMount
   useEffect(() => {
     try {
       (async () => {
@@ -59,26 +42,19 @@ export function UserProviders({
         if (res_UIdata?.success) {
           setData(res_UIdata.success);
         } else {
-          // update UIstate.
-          setUIstate((prev) => ({
-            ...prev,
-            error: res_UIdata.error || "unknown error",
-          }));
+          // throw error
+          throw new Error(res_UIdata.error || "unknown error");
         }
-        setUIstate((prev) => ({ ...prev, loadingData: false }));
       })();
-    } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message);
-      } else {
-        // Handle other types of errors
-        toast.error("Unknown error, try again later");
-      }
+    } catch (error: any) {
+      // update UIstate.error
+      setUIstate((prev) => ({
+        ...prev,
+        error: error.message || "unknown error",
+      }));
+    } finally {
+      setUIstate((prev) => ({ ...prev, loadingData: false }));
     }
-
-    return () => {
-      // Cleanup logic here
-    };
   }, []);
 
   // render
@@ -87,7 +63,7 @@ export function UserProviders({
       {UIstate.splashLag ? (
         <div className="flex h-full">
           <LoaderHourglass
-            isLoading={UIstate.splash || UIstate.loadingData}
+            isLoading={UIstate.loadingData}
             onExited={() =>
               setUIstate((prev) => ({ ...prev, splashLag: false }))
             }
@@ -103,9 +79,9 @@ export function UserProviders({
           to go back to home, or try again later.{" "}
           <p className="text-destructive text-sm italic">{UIstate.error}</p>
         </div>
-      ) : (
+      ) : data ? (
         <UserContext.Provider value={data}>{children}</UserContext.Provider>
-      )}
+      ) : null}
     </>
   );
 }
