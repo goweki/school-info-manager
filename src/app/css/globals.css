@@ -73,4 +73,32 @@
   body {
     @apply bg-background text-foreground h-full !p-0 container;
   }
+  h1 {
+    @apply text-3xl lg:text-4xl font-black;
+  }
+  h2 {
+    @apply text-xl lg:text-2xl font-bold;
+  }
+}
+
+@layer components {
+  .reactMarkDown {
+    /* Root styles here */
+  }
+
+  .reactMarkDown h2 {
+    @apply mt-8 mb-4;
+  }
+
+  .reactMarkDown ul {
+    @apply mt-4 mb-4 list-disc list-outside;
+  }
+
+  .reactMarkDown ul li {
+    @apply ml-8 list-item text-left;
+  }
+
+  .reactMarkDown p {
+    @apply whitespace-pre-wrap;
+  }
 }

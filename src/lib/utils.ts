@@ -44,6 +44,11 @@ export async function compareHash(
   return isValid;
 }
 
+//
+//
+//
+// DATE HANDLERS
+
 /**
  * Parses Date object to human readable format
  * @param _date - Date object to be parsed.
@@ -52,11 +57,6 @@ export async function compareHash(
 export function dateShort(_date: Date): string {
   return new Intl.DateTimeFormat("en-GB").format(_date);
 }
-
-//
-//
-//
-// DATE HANDLERS
 
 /**
  * checks if Date has passed

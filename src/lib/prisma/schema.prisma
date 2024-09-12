@@ -8,7 +8,7 @@ datasource db {
 }
 
 enum userRole {
-    SUPER_ADMIN
+    SYSTEM
     ADMIN
     TEACHER
     GUARDIAN
@@ -24,7 +24,7 @@ enum userStatus {
 model User {
     id               String     @id @default(auto()) @map("_id") @db.ObjectId
     email            String?    @unique
-    name             String
+    name             String?
     tel              String?    @unique
     password         String?
     role             userRole   @default(STUDENT)

@@ -47,9 +47,7 @@ const postHandler = async (request: Request) => {
         });
       }
       userExists = await prisma.user.create({
-        data: {
-          email,
-        },
+        data: email,
       });
     } else {
       // if to signUp and userExists

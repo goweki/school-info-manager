@@ -15,7 +15,7 @@ async function getHandler(req: Request, user: Partial<User>) {
     // GET guardians
     const guardians = await prisma.guardian.findMany({
       include: {
-        students: true,
+        children: true,
       },
     });
 

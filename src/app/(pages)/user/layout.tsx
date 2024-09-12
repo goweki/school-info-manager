@@ -1,5 +1,5 @@
 import WithNavLayout from "@/components/layouts/withNavBar";
-import { UserProviders } from "@/components/mols/userProviders";
+import { UserProviders } from "@/components/mols/providers";
 //
 export default function DashboardLayout({
   children,
