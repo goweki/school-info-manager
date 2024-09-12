@@ -3,18 +3,15 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import {
-  BookOpen,
-  FileInput,
   Home,
   Menu,
   Users,
-  Settings,
-  File,
-  User,
   LibraryBig,
   Contact,
+  LayoutDashboard,
+  GraduationCap,
+  Presentation,
 } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { Button } from "../ui/button";
@@ -57,12 +54,28 @@ const routes = {
     { label: "blog", link: "/blog", icon: LibraryBig },
     { label: "contacts", link: "/contacts", icon: Contact },
   ],
-  auth: [
+  SYSTEM: [
     { label: "home", link: "/", icon: Home },
-    { label: "dashboard", link: "/user", icon: Home },
-    { label: "services", link: "/services", icon: Users },
-    { label: "blog", link: "/blog", icon: LibraryBig },
-    { label: "contacts", link: "/contacts", icon: Contact },
+    { label: "dashboard", link: "/user", icon: LayoutDashboard },
+    { label: "Students", link: "/user/students", icon: GraduationCap },
+    { label: "Parents", link: "/user/parents", icon: Users },
+    { label: "Courses", link: "/user/courses", icon: LibraryBig },
+  ],
+  ADMIN: [
+    { label: "home", link: "/", icon: Home },
+    { label: "dashboard", link: "/user", icon: LayoutDashboard },
+  ],
+  TEACHER: [
+    { label: "home", link: "/", icon: Home },
+    { label: "dashboard", link: "/user", icon: LayoutDashboard },
+  ],
+  GUARDIAN: [
+    { label: "home", link: "/", icon: Home },
+    { label: "dashboard", link: "/user", icon: LayoutDashboard },
+  ],
+  STUDENT: [
+    { label: "home", link: "/", icon: Home },
+    { label: "dashboard", link: "/user", icon: LayoutDashboard },
   ],
 };
 
@@ -94,28 +107,29 @@ const Navbar = () => {
 
 const NavigationMenuComponent = () => {
   const pathname = usePathname();
-  const { data: userSession, status: authStatus } = useSession();
+  const { data: session, status: authStatus } = useSession();
   // console.log("pathname: ", pathname);
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        {(authStatus === "authenticated" ? routes.auth : routes.unauth).map(
-          ({ label, link }) => (
-            <NavigationMenuItem key={label}>
-              <Link href={link} legacyBehavior passHref>
-                {/* <NavigationMenuLink className={navigationMenuTriggerStyle()}> */}
-                <NavigationMenuLink
-                  className={cn(
-                    buttonVariants({ variant: "outline" }),
-                    pathname === link ? "font-black border-0" : "border-0"
-                  )}
-                >
-                  {titleCase(label)}
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          )
-        )}
+        {(authStatus === "authenticated" && session.user?.role
+          ? routes[session.user.role]
+          : routes.unauth
+        ).map(({ label, link }) => (
+          <NavigationMenuItem key={label}>
+            <Link href={link} legacyBehavior passHref>
+              {/* <NavigationMenuLink className={navigationMenuTriggerStyle()}> */}
+              <NavigationMenuLink
+                className={cn(
+                  buttonVariants({ variant: "outline" }),
+                  pathname === link ? "font-black border-0" : "border-0"
+                )}
+              >
+                {titleCase(label)}
+              </NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        ))}
       </NavigationMenuList>
     </NavigationMenu>
   );
@@ -148,7 +162,7 @@ const ListItem = React.forwardRef<
 ListItem.displayName = "ListItem";
 
 const HamburgerMenu = () => {
-  const { data: userSession, status: authStatus } = useSession();
+  const { data: session, status: authStatus } = useSession();
   const pathname = usePathname();
 
   return (
@@ -165,20 +179,21 @@ const HamburgerMenu = () => {
           <SheetDescription className="sr-only">Main Menu</SheetDescription>
         </SheetHeader>
         <nav className="grid gap-2 mt-4 text-lg font-medium">
-          {(userSession?.user ? routes.auth : routes.unauth).map(
-            ({ label, link, icon: Icon }) => (
-              <Link
-                key={label}
-                href={link}
-                className={`${
-                  pathname === link ? "bg-accent !text-foreground" : ""
-                } p-2 rounded-lg mr-4 flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground`}
-              >
-                <Icon className="h-5 w-5" />
-                {label}
-              </Link>
-            )
-          )}
+          {(authStatus === "authenticated" && session.user?.role
+            ? routes[session.user.role]
+            : routes.unauth
+          ).map(({ label, link, icon: Icon }) => (
+            <Link
+              key={label}
+              href={link}
+              className={`${
+                pathname === link ? "bg-accent !text-foreground" : ""
+              } p-2 rounded-lg mr-4 flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground`}
+            >
+              <Icon className="h-5 w-5" />
+              {label}
+            </Link>
+          ))}
         </nav>
       </SheetContent>
     </Sheet>

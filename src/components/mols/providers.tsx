@@ -8,15 +8,21 @@ import LoaderHourglass from "./loader";
 import { TooltipProvider } from "../ui/tooltip";
 import { httpCodes } from "@/lib/refDictionary";
 import { Media, Student, Guardian } from "@prisma/client";
-
 import Link from "next/link";
+
+type userProviderType = {
+  students: any[];
+  teachers: any[];
+  guardians: any[];
+  courses: any[];
+};
 
 // Public Pages Data Context
 
 export const DataContext = createContext<{
-  data: { media: Media[] | null };
+  data: any | null;
   refreshData: () => void;
-}>({ data: { media: null }, refreshData: () => {} });
+}>({ data: null, refreshData: () => {} });
 
 export function RootProviders({
   children,
@@ -124,14 +130,14 @@ export function RootProviders({
 
 // Logged-In User Context
 
-export const UserContext = createContext<{ [key: string]: any[] } | null>(null);
+export const UserContext = createContext<userProviderType | null>(null);
 
 export function UserProviders({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [data, setData] = useState<{ [key: string]: any[] } | null>(null);
+  const [data, setData] = useState<userProviderType | null>(null);
 
   const [UIstate, setUIstate] = useState<{
     splashLag: boolean;

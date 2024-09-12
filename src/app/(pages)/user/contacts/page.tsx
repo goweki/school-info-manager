@@ -54,7 +54,7 @@ import { useContext, useEffect, useMemo, useState } from "react";
 
 type ContactType = Guardian & { children?: Student[] };
 
-export default function Dashboard() {
+export default function Guardians() {
   const users = useContext(UserContext);
 
   // Use useMemo to memoize the values

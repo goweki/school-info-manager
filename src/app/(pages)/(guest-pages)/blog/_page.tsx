@@ -8,9 +8,10 @@ import { Media } from "@prisma/client";
 
 export default function Blog() {
   const {
-    data: { media },
-    // refreshData,
+    data, // refreshData,
   } = useContext(DataContext);
+
+  const { media } = data || [];
 
   const [blogposts, setPosts] = useState<Media[] | null>(null);
 
@@ -18,8 +19,8 @@ export default function Blog() {
     if (media) {
       setPosts(
         media
-          .filter(({ type }) => type === "BLOGPOST")
-          .map((blogpost_) => ({
+          .filter(({ type }: { type: string }) => type === "BLOGPOST")
+          .map((blogpost_: { [key: string]: any }) => ({
             ...blogpost_,
             // date: new ObjectId(blogpost_.id).getTimestamp(),
           }))
@@ -63,11 +64,12 @@ const BlogCard = ({
   cardTitle: string;
   cardDescription: string;
 }) => {
+  //render
   return (
     <Link
       href={`/blog/${objId}`}
-      id="blogpostCard"
-      className="block w-full p-4 bg-card rounded hover:bg-popover cursor-pointer h-fit"
+      scroll={false}
+      className="block w-full p-4 bg-card rounded hover:bg-popover cursor-pointer h-fit border border-border"
     >
       <div className="mb-8 w-full">
         <div className="mb-8 overflow-hidden rounded">

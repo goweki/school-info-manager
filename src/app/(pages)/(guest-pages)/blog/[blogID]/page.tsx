@@ -30,6 +30,11 @@ export default function BlogPost({ params }: { params: any }) {
   const [selected, setSelected] = useState<Media>();
   const [UIstate, setUIstate] = useState("");
 
+  // dont preserve scroll position
+  // const pathname = usePathname();
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   // get blogpost by blogID
   useEffect(() => {
     if (blogID && media) {
