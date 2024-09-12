@@ -52,7 +52,7 @@ import { UserContext } from "@/components/mols/providers";
 import { Guardian, Student } from "@prisma/client";
 import { useContext, useEffect, useMemo, useState } from "react";
 
-type ContactType = Guardian & { students?: Student[] };
+type ContactType = Guardian & { children?: Student[] };
 
 export default function Dashboard() {
   const users = useContext(UserContext);
@@ -237,22 +237,14 @@ export default function Dashboard() {
                   //   pagination.currentPage * pagination.perPage + 1
                   // )
                   .map(
-                    ({
-                      id,
-                      name,
-                      avatar,
-                      email,
-                      tel,
-                      whatsapp,
-                      studentIDs,
-                    }) => (
+                    ({ id, name, avatar, email, tel, whatsapp, children }) => (
                       <TableRow key={id}>
                         <TableCell className="hidden sm:table-cell">
                           <Image
                             alt="Product image"
                             className="aspect-square rounded-md object-cover"
                             height="64"
-                            src={avatar}
+                            src={avatar || ""}
                             width="64"
                           />
                         </TableCell>
@@ -267,7 +259,7 @@ export default function Dashboard() {
                           {whatsapp}
                         </TableCell>
                         <TableCell className="hidden md:table-cell">
-                          {studentIDs.length}
+                          {children?.length || 0}
                         </TableCell>
 
                         <TableCell>
