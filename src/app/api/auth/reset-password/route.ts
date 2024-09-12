@@ -94,7 +94,7 @@ const postHandler = async (request: Request) => {
     }
     const { html, text } = res_generateEmail;
     const res_sendEmail = await sendEmail(
-      "Reset Password - (bunge-scope)",
+      "Reset Password - (school-info-manager)",
       html,
       text,
       email
