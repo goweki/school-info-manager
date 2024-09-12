@@ -1,37 +1,57 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
-const super_admin = require("../scripts/data/super_admin.json");
-const media = require("../scripts/data/media.json");
-const students = require("../scripts/data/students.json");
-const guardians = require("../scripts/data/guardians.json");
+const seedData = require("../scripts/data/seedData.json");
+const { users, media, courses, guardians } = seedData;
 
-// funtion definition
+// Function definition
 async function seed() {
-  console.log("Seeding super_admin...");
-  await prisma.user.upsert({
-    where: { email: super_admin.email },
-    update: { ...super_admin },
-    create: { ...super_admin },
-  });
+  console.log("Seeding users...");
+  for (const user of users) {
+    await prisma.user.upsert({
+      where: { email: user.email }, // Unique constraint for email
+      update: {}, // No updates if the record exists
+      create: user, // Create new record if it does not exist
+    });
+  }
 
   console.log("Seeding media...");
-  await prisma.media.createMany({
-    data: media,
-  });
+  const _mediaNames = (await prisma.media.findMany()).map(({ title }) => title);
+  for (const mediaDoc of media) {
+    // Create new record if it does not exist
+    if (!_mediaNames.includes(mediaDoc.name)) {
+      await prisma.media.create({
+        data: mediaDoc,
+      });
+    }
+  }
 
-  console.log("Seeding students...");
-  await prisma.student.createMany({
-    data: students,
-  });
+  console.log("Seeding courses...");
+  const _courseNames = (await prisma.course.findMany()).map(({ name }) => name);
+  for (const courseDoc of courses) {
+    // Create new record if it does not exist
+    if (!_courseNames.includes(courseDoc.name)) {
+      await prisma.course.create({
+        data: courseDoc,
+      });
+    }
+  }
 
   console.log("Seeding guardians...");
-  await prisma.guardian.createMany({
-    data: guardians,
-  });
+  const _guardianNames = (await prisma.guardian.findMany()).map(
+    ({ name }) => name
+  );
+  for (const guadianDoc of guardians) {
+    // Create new record if it does not exist
+    if (!_guardianNames.includes(guadianDoc.name)) {
+      await prisma.guardian.create({
+        data: guadianDoc,
+      });
+    }
+  }
 }
 
-//function call
+// Function call
 seed()
   .then(async () => {
     console.log("SEEDING COMPLETE\n");

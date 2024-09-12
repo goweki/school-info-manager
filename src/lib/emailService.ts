@@ -91,7 +91,7 @@ type EmailConfig = {
 
 const config: Record<string, EmailConfig> = {
   signUp: {
-    desc: "Sign Up (Goweki Chat)",
+    desc: "Sign Up (School Info Manager)",
     title: "Set New Password",
     parA_html:
       "Welcome! Click the button below to complete your sign-up process; or alternatively use the link: ",
@@ -101,7 +101,7 @@ const config: Record<string, EmailConfig> = {
     links: [{ label: "github", href: "https://github.com/goweki" }],
   },
   reset: {
-    desc: "Set New Password (Goweki Chat)",
+    desc: "Set New Password (School Info Manager)",
     title: "Password Reset Info",
     parA_html:
       "We received a request to reset your password. Click the button below to set a new password; or alternatively use the link: ",
@@ -641,8 +641,8 @@ const templateHTML = (
                                       <!--Header with logo-->
       
                                       <!--light mode logo-->
-                                      <a href="https://scope.goweki.com" target="_blank" rel="noopener noreferrer">
-                                          <h2 style="color: #ffffff; text-decoration: none;" >BUNGE SCOPE</h2>
+                                      <a href="https://goweki.com" target="_blank" rel="noopener noreferrer">
+                                          <h2 style="color: #ffffff; text-decoration: none;" >School Info Manager</h2>
                                       </a>
                                   </td>
                               </tr>
@@ -692,7 +692,7 @@ const templateHTML = (
                                                   <p style="text-align: left;"><strong>This link will expire in 1
                                                           hour.</strong> If you did not request a new password, please
                                                       disregard this message.<br /><br /><strong>Questions?</strong> Contact
-                                                      <a href="mailto:scope@goweki.com">support@goweki.com</a>.
+                                                      <a href="mailto:antonio@goweki.com">support@goweki.com</a>.
                                                   </p>
                                               </td>
                                           </tr>
@@ -753,8 +753,8 @@ const templatePlaintext = (_name: string, _parA: string, _url: string) => {
       ${_url}
       
       
-      BUNGE-SCOPE
-      https://scope.goweki.com
+      School Info Manager
+      https://goweki.com
       
       `;
 };

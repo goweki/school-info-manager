@@ -1,5 +1,5 @@
 {
-  "name": "contacts-manager",
+  "name": "school-info-manager",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "seed": "node src/scripts/seed.js",
     "postinstall": "prisma generate --schema=./src/lib/prisma/schema.prisma"
   },
   "dependencies": {
@@ -31,7 +32,7 @@
     "@types/recharts": "^1.8.29",
     "africastalking": "^0.6.7",
     "bcryptjs": "^2.4.3",
-    "bson": "^6.8.0",
+    "bson-objectid": "^2.0.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
